@@ -5,4 +5,4 @@ Um estoque pra uma loja de baterias automotivas
 - Back: Node.js
 - Database: Firebase
 
-[Documentação](https://important-lifeboat-0ef.notion.site/1b3f5df10e7e80f19862da81be047646?v=1b3f5df10e7e808e9074000ced005219&pvs=4)
+Segue a [Documentação](https://important-lifeboat-0ef.notion.site/Estoque-Premium-1b3f5df10e7e808495cef04d12052317?pvs=4)
