@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cadastro - Premium Baterias</title>
+  <link rel="stylesheet" href="../styles/style.css" />
+  
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/11.5.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/11.5.0/firebase-firestore-compat.js"></script>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="logo">
+        <span class="logo-bold">PRE</span><span class="logo-light">MI</span><span class="logo-bold">UM</span>
+        <div class="logo-subtitle">Baterias</div>
+      </div>
+      <h1 class="title">Cadastro</h1>
+      <a href="../index.html" class="home-icon">🏠</a>
+    </header>
+
+    <form class="form" id="produtoForm">
+      <label for="nome">Nome do Produto</label>
+      <input type="text" id="nome" name="nome" placeholder="Digite o nome do produto" required/>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="custo">Custo</label>
+          <input type="number" id="custo" name="custo" step="0.01" required/>
+        </div>
+        <div class="form-group">
+          <label for="valor">Valor</label>
+          <input type="number" id="valor" name="valor" step="0.01" required/>
+        </div>
+        <div class="form-group">
+          <label for="minimo">Quantidade Mínima</label>
+          <input type="number" id="minimo" name="minimo" required/>
+        </div>
+      </div>
+
+      <div class="form-buttons">
+        <button type="reset" class="cancel">Cancelar</button>
+        <button type="submit" class="submit">Cadastrar</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    // Configuração do Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyCahD7SjvqupVdgP2QyIgY3f3l-UCUsSQU",
+      authDomain: "estoque-premium-d519d.firebaseapp.com",
+      projectId: "estoque-premium-d519d",
+      storageBucket: "estoque-premium-d519d.firebasestorage.app",
+      messagingSenderId: "893185846138",
+      appId: "1:893185846138:web:edb352e8833db09d4544c3",
+      measurementId: "G-PFMGGWJ4ZH"
+    };
+  
+    // Inicializa Firebase
+    if (!firebase.apps.length) {
+      firebase.initializeApp(firebaseConfig);
+    }
+    
+    const db = firebase.firestore();
+  
+    // Capturar o envio do formulário e salvar no Firestore
+    document.getElementById("produtoForm").addEventListener("submit", async function (e) {
+      e.preventDefault(); // Impede que a página recarregue
+  
+      // Captura os valores do formulário
+      const nome = document.getElementById("nome").value.trim();
+      const custo = parseFloat(document.getElementById("custo").value);
+      const valor = parseFloat(document.getElementById("valor").value);
+      const minimo = parseInt(document.getElementById("minimo").value);
+  
+      // Verifica se os campos estão preenchidos corretamente
+      if (!nome || isNaN(custo) || isNaN(valor) || isNaN(minimo)) {
+        alert("Por favor, preencha todos os campos corretamente.");
+        return;
+      }
+  
+      try {
+        // Tenta adicionar o produto no Firestore
+        await db.collection("produtos").add({
+          nome: nome,
+          custo: custo,
+          valor: valor,
+          minimo: minimo,
+          criadoEm: firebase.firestore.FieldValue.serverTimestamp()
+        });
+  
+        alert("Produto cadastrado com sucesso!");
+        document.getElementById("produtoForm").reset(); // Limpa o formulário
+      } catch (error) {
+        console.error("Erro ao cadastrar produto:", error);
+        alert("Erro ao cadastrar produto. Veja o console para mais detalhes.");
+      }
+    });
+  </script>  
+</body>
+</html>
