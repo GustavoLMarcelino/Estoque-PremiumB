@@ -1,7 +1,7 @@
 # Estoque-Premium
 Um estoque pra uma loja de baterias automotivas
 
-- Front: React 
+- Front: HTML e CSS 
 - Back: Node.js
 - Database: Firebase
 

@@ -1,0 +1,287 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+  }
+  
+  body {
+    background-color: #fff;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  /* Cabeçalho */
+  .header {
+    width: 100%;
+    background-color: #111;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #FFD700;
+  }
+  
+  .logo {
+    text-align: center;
+    font-size: 18px;
+    line-height: 1.2;
+  }
+  
+  .logo-bold {
+    font-weight: bold;
+    color: white;
+  }
+  
+  .logo-light {
+    color: #FFD700;
+  }
+  
+  .logo-subtitle {
+    font-size: 12px;
+    color: #FFD700;
+  }
+  
+  .title {
+    font-size: 22px;
+    font-weight: bold;
+    color: #FFD700;
+  }
+  
+  .circle-icon {
+    background-color: #FFD700;
+    color: black;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Imagem do dashboard */
+  .dashboard-image {
+    margin-top: 20px;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 8px;
+  }
+  
+  /* Botões */
+  .button-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 150px);
+    gap: 15px;
+    margin: 30px 0;
+  }
+  
+  .button-grid button {
+    background-color: #FFD700;
+    color: black;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .button-grid button:hover {
+    background-color: #e6c200;
+  }
+  
+  /* Reaproveita o estilo do menu, adicionando campos de formulário */
+body {
+    background-color: #fff;
+    font-family: sans-serif;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  /* Cabeçalho */
+  .header {
+    width: 100%;
+    background-color: #111;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #FFD700;
+  }
+  
+  .logo {
+    text-align: center;
+    font-size: 18px;
+    line-height: 1.2;
+  }
+  
+  .logo-bold {
+    font-weight: bold;
+    color: white;
+  }
+  
+  .logo-light {
+    color: #FFD700;
+  }
+  
+  .logo-subtitle {
+    font-size: 12px;
+    color: #FFD700;
+  }
+  
+  .title {
+    font-size: 22px;
+    font-weight: bold;
+    color: #FFD700;
+  }
+  
+  .home-icon {
+    background-color: #FFD700;
+    color: black;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+  }
+  
+  /* Formulário */
+  .form {
+    padding: 30px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .form label {
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  
+  .form input {
+    padding: 10px;
+    border: none;
+    border-radius: 25px;
+    background-color: #FFD700;
+    font-size: 16px;
+    width: 100%;
+  }
+  
+  /* Linha com 3 campos lado a lado */
+  .form-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+  }
+  
+  .form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Botões */
+  .form-buttons {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+  }
+  
+  .form-buttons button {
+    background-color: #FFD700;
+    color: black;
+    border: none;
+    padding: 12px 40px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .form-buttons button:hover {
+    background-color: #e6c200;
+  }
+  
+  .menu-link {
+    background-color: #FFD700;
+    color: black;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
+  }
+  
+  .menu-link:hover {
+    background-color: #e6c200;
+  }
+  
+  /* Estilo da tabela de movimentação */
+.mov-header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px 40px 10px;
+  }
+  
+  .edit-button {
+    background-color: black;
+    color: #FFD700;
+    border: none;
+    padding: 10px 25px;
+    font-size: 14px;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .edit-button:hover {
+    background-color: #333;
+  }
+  
+  .mov-table {
+    width: 90%;
+    margin: 0 auto 40px;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+  }
+  
+  .mov-table th {
+    text-align: left;
+    padding: 10px;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .mov-table td {
+    background-color: #FFD700;
+    padding: 12px 15px;
+    border-radius: 10px;
+    font-size: 14px;
+  }
+  
+  .mov-table input[type="checkbox"] {
+    transform: scale(1.2);
+  }
+  

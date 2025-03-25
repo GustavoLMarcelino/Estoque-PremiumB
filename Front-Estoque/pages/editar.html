@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Editar - Premium Baterias</title>
+  <link rel="stylesheet" href="../styles/style.css" />
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="logo">
+        <span class="logo-bold">PRE</span><span class="logo-light">MI</span><span class="logo-bold">UM</span>
+        <div class="logo-subtitle">Baterias</div>
+      </div>
+      <h1 class="title">Editar</h1>
+      <a href="../index.html" class="home-icon">🏠</a>
+    </header>
+
+    <form class="form">
+      <div class="form-row">
+        <div class="form-group" style="max-width: 80px;">
+          <label for="cod">Cod</label>
+          <input type="text" id="cod" name="cod" />
+        </div>
+        <div class="form-group">
+          <label for="nome">Nome do Produto</label>
+          <input type="text" id="nome" name="nome" />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="custo">Custo</label>
+          <input type="text" id="custo" name="custo" />
+        </div>
+        <div class="form-group">
+          <label for="valor">Valor</label>
+          <input type="text" id="valor" name="valor" />
+        </div>
+        <div class="form-group">
+          <label for="minimo">Quantidade Mínima</label>
+          <input type="number" id="minimo" name="minimo" />
+        </div>
+      </div>
+
+      <div class="form-buttons">
+        <button type="reset" class="cancel">Cancelar</button>
+        <button type="submit" class="submit">Cadastrar</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
