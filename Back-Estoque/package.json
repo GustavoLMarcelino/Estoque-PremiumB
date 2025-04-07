@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "back-estoque": "file:",
     "express": "^4.21.2"
   }
 }
