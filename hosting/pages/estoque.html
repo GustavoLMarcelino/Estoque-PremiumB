@@ -55,7 +55,8 @@
       collection,
       getDocs,
       setDoc,
-      doc
+      doc,
+      deleteDoc
     } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
 
     // 🔧 Substitua pelos dados do seu projeto Firebase:
@@ -87,7 +88,10 @@
             <td>R$ ${produto.custo?.toFixed(2).replace('.', ',') || '0,00'}</td>
             <td>R$ ${produto.valor?.toFixed(2).replace('.', ',') || '0,00'}</td>
             <td>${produto.minimo || 0}</td>
-            <td><button class="edit-btn" data-id="${docRef.id}">✏️ Editar</button></td>
+            <td>
+                <button class="edit-btn" data-id="${docRef.id}">✏️ Editar</button>
+                <button class="delete-btn" data-id="${docRef.id}">🗑️ Excluir</button>
+            </td>
           </tr>
         `;
         tbody.innerHTML += linha;
@@ -113,6 +117,21 @@
           window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
         }
       }
+        if (e.target.classList.contains("delete-btn")) {
+            const id = e.target.dataset.id;
+            const confirmar = confirm("Tem certeza que deseja excluir este produto?");
+            if (confirmar) {
+                try {
+                await deleteDoc(doc(db, "produtos", id));
+                alert("Produto excluído com sucesso!");
+                carregarEstoque();
+                } catch (error) {
+                alert("Erro ao excluir produto.");
+                console.error(error);
+                }
+            }
+        }
+
     });
 
     // Salvar edição
