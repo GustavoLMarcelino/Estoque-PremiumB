@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Estoque - Premium Baterias</title>
+  <link rel="stylesheet" href="../styles/style.css" />
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="logo">
+        <img src="/hosting/assets/images/Logo Premium Baterias.jpeg" alt="Logo Premium Baterias" class="logo-image">
+      </div>
+      <h1 class="title">Estoque</h1>
+      <a href="../index.html" class="home-icon">🏠</a>
+    </header>
+
+    <table class="mov-table">
+      <thead>
+        <tr>
+          <th>Produto</th>
+          <th>Custo (R$)</th>
+          <th>Valor (R$)</th>
+          <th>Qtd. Mínima</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody id="estoque-body">
+        <!-- Dados carregados do Firestore -->
+      </tbody>
+    </table>
+
+    <!-- Formulário de edição -->
+    <div class="form" id="editarForm" style="display: none; margin-top: 30px;">
+      <h2>Editar Produto</h2>
+      <input type="hidden" id="produtoId" />
+      <label>Nome</label>
+      <input type="text" id="editNome" />
+      <label>Custo</label>
+      <input type="number" id="editCusto" step="0.01" />
+      <label>Valor</label>
+      <input type="number" id="editValor" step="0.01" />
+      <label>Quantidade Mínima</label>
+      <input type="number" id="editMinimo" />
+      <button id="salvarEdicao" class="submit">Salvar</button>
+    </div>
+  </div>
+
+  <!-- Firebase SDK -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+    import {
+      getFirestore,
+      collection,
+      getDocs,
+      setDoc,
+      doc
+    } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+
+    // 🔧 Substitua pelos dados do seu projeto Firebase:
+    const firebaseConfig = {
+        apiKey: "AIzaSyCahD7SjvqupVdgP2QyIgY3f3l-UCUsSQU",
+        authDomain: "estoque-premium-d519d.firebaseapp.com",
+        projectId: "estoque-premium-d519d",
+        storageBucket: "estoque-premium-d519d.firebasestorage.app",
+        messagingSenderId: "893185846138",
+        appId: "1:893185846138:web:edb352e8833db09d4544c3",
+        measurementId: "G-PFMGGWJ4ZH"
+    };
+
+    // Inicializa Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // Carrega os dados do Firestore e monta a tabela
+    async function carregarEstoque() {
+      const tbody = document.getElementById("estoque-body");
+      tbody.innerHTML = "";
+
+      const snapshot = await getDocs(collection(db, "produtos"));
+      snapshot.forEach((docRef) => {
+        const produto = docRef.data();
+        const linha = `
+          <tr>
+            <td>${produto.nome || ''}</td>
+            <td>R$ ${produto.custo?.toFixed(2).replace('.', ',') || '0,00'}</td>
+            <td>R$ ${produto.valor?.toFixed(2).replace('.', ',') || '0,00'}</td>
+            <td>${produto.minimo || 0}</td>
+            <td><button class="edit-btn" data-id="${docRef.id}">✏️ Editar</button></td>
+          </tr>
+        `;
+        tbody.innerHTML += linha;
+      });
+    }
+
+    // Clicar em "Editar"
+    document.addEventListener("click", async (e) => {
+      if (e.target.classList.contains("edit-btn")) {
+        const id = e.target.dataset.id;
+        const docRef = doc(db, "produtos", id);
+        const produtoSnap = await getDocs(collection(db, "produtos"));
+        const produto = produtoSnap.docs.find(d => d.id === id)?.data();
+
+        if (produto) {
+          document.getElementById("produtoId").value = id;
+          document.getElementById("editNome").value = produto.nome || '';
+          document.getElementById("editCusto").value = produto.custo || 0;
+          document.getElementById("editValor").value = produto.valor || 0;
+          document.getElementById("editMinimo").value = produto.minimo || 0;
+
+          document.getElementById("editarForm").style.display = "block";
+          window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+        }
+      }
+    });
+
+    // Salvar edição
+    document.getElementById("salvarEdicao").addEventListener("click", async function () {
+      const id = document.getElementById("produtoId").value;
+      const nome = document.getElementById("editNome").value.trim();
+      const custo = parseFloat(document.getElementById("editCusto").value);
+      const valor = parseFloat(document.getElementById("editValor").value);
+      const minimo = parseInt(document.getElementById("editMinimo").value);
+
+      if (!nome || isNaN(custo) || isNaN(valor) || isNaN(minimo)) {
+        alert("Preencha todos os campos corretamente.");
+        return;
+      }
+
+      try {
+        await setDoc(doc(db, "produtos", id), {
+          nome,
+          custo,
+          valor,
+          minimo
+        });
+        alert("Produto atualizado com sucesso!");
+        document.getElementById("editarForm").style.display = "none";
+        carregarEstoque();
+      } catch (error) {
+        alert("Erro ao salvar edição.");
+        console.error(error);
+      }
+    });
+
+    // Inicializa a página
+    carregarEstoque();
+  </script>
+</body>
+</html>
