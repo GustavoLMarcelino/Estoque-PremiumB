@@ -15,7 +15,7 @@ body {
   background-color: #ffffff;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   min-height: 100vh;
 }
 
@@ -28,7 +28,7 @@ body {
   width: 100%;
 }
 
-/* Cabeçalho fixo no topo */
+/* Cabeçalho fixo */
 .header {
   width: 100%;
   background-color: #000000;
@@ -43,7 +43,6 @@ body {
   z-index: 1000;
 }
 
-/* Ícone "G" à esquerda */
 .circle-icon {
   background-color: #FFD700;
   color: #000000;
@@ -57,7 +56,6 @@ body {
   margin-left: 20px;
 }
 
-/* Centralização do título "Menu" */
 .title {
   font-size: 22px;
   font-weight: bold;
@@ -68,7 +66,6 @@ body {
   transform: translateX(-50%);
 }
 
-/* Logo no lado direito */
 .logo {
   display: flex;
   align-items: center;
@@ -87,15 +84,7 @@ body {
   color: #FFD700;
 }
 
-/* Imagem do dashboard */
-.dashboard-image {
-  margin-top: 20px;
-  width: 90%;
-  max-width: 600px;
-  border-radius: 8px;
-}
-
-/* Botões */
+/* Botões do menu principal */
 .button-grid {
   display: grid;
   grid-template-columns: repeat(2, 200px);
@@ -161,7 +150,6 @@ body {
   flex-direction: column;
 }
 
-/* Botões de formulário */
 .form-buttons {
   margin-top: 30px;
   display: flex;
@@ -185,7 +173,7 @@ body {
   background-color: #e6c200;
 }
 
-/* Botão de edição na movimentação */
+/* Botão de edição da tela de movimentação */
 .mov-header {
   display: flex;
   justify-content: center;
@@ -210,27 +198,72 @@ body {
   background-color: #333333;
 }
 
+/* Tabela de movimentação / estoque */
 .mov-table {
-  width: 90%;
-  margin: 0 auto 40px;
+  width: 80%; /* Reduz a largura da tabela */
+  margin: 100px auto; /* Centraliza a tabela e adiciona margem superior */
+  font-size: 14px;
   border-collapse: separate;
-  border-spacing: 0 10px;
+  border-spacing: 0 5px; /* Altura entre as linhas menor */
 }
 
 .mov-table th {
   text-align: left;
-  padding: 10px;
+  padding: 6px 10px;
   font-size: 14px;
   color: #333333;
 }
 
 .mov-table td {
-  background-color: #FFD700;
-  padding: 12px 15px;
-  border-radius: 10px;
+  padding: 6px 10px;
   font-size: 14px;
 }
 
-.mov-table input[type="checkbox"] {
-  transform: scale(1.2);
+/* Ajusta o estilo das células amarelas */
+.mov-table td:not(:last-child) {
+  background-color: #FFD700; /* Mantém o fundo amarelo */
+  border-radius: 0; /* Remove as bordas arredondadas */
+}
+
+/* Coluna "Ações" */
+.mov-table td:last-child,
+.mov-table th:last-child {
+  width: 110px; /* coluna menor */
+  background-color: transparent;
+  text-align: center;
+}
+
+/* Botões Editar e Excluir */
+.edit-btn,
+.delete-btn {
+  border: none;
+  padding: 4px 8px;
+  margin: 2px;
+  border-radius: 10px;
+  font-size: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.edit-btn {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.delete-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+.mov-table th:last-child {
+  text-align: center;
+}
+
+/* Ícone de retorno */
+.icone-retorno {
+  width: 30px;
+  height: 30px;
 }
